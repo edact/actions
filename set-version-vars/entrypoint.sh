@@ -1,9 +1,5 @@
 #!/bin/sh -l
 
-echo HALLO WELT
-
-echo $tagges
-
 echo $INPUT_IMAGE_TAGS
 
 tags=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
@@ -11,16 +7,8 @@ tags=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
 for addr in $tags
 do
     echo "> [$addr]"
+    $(echo $$addr)
 done
-
-tagsarr=$(echo $tagges | tr ", " "\n")
-
-for addr in $tagsarr
-do
-    echo "> [$addr]"
-done
-
-cat wurst
 
 VERSION=$(echo $GITHUB_REF| cut -d'/' -f 3)
 MINOR=$(echo $VERSION| cut -d'.' -f 1,2)
