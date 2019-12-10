@@ -1,0 +1,6 @@
+name: "check js project"
+description: "checks javascript project for mistakes that should not be merged into master"
+author: "eDACT"
+runs:
+  using: "docker"
+  image: "Dockerfile"
