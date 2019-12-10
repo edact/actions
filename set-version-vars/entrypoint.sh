@@ -7,7 +7,7 @@ tags=$(echo $IMAGE_TAGS | tr ", " "\n")
 for addr in $tags
 do
     echo "> [$addr]"
-    echo $(echo ${$addr})
+    echo $(echo '${'$addr'}')
 done
 
 VERSION=$(echo $GITHUB_REF| cut -d'/' -f 3)
