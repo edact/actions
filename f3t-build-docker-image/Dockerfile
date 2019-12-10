@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM ubuntu-latest
 
 COPY entrypoint.sh /entrypoint.sh
 
