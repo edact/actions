@@ -5,9 +5,6 @@ inputs:
   docker_registry_url:
     description: "URL of the docker registry, no trailing slashes"
     default: "docker.pkg.github.com"
-  npm_registry_url:
-    description: "URL of the npm registry, no trailing slashes"
-    default: "npm.pkg.github.com"
   image_name:
     description: "name of the image"
     required: true
@@ -19,6 +16,5 @@ runs:
   image: "Dockerfile"
   args:
     - ${{ inputs.docker_registry_url}}
-    - ${{ inputs.npm_registry_url }}
     - ${{ inputs.image_name }}
     - ${{ inputs.image_tag }}
