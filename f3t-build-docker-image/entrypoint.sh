@@ -6,7 +6,7 @@ printf "@edact:registry=https://${INPUT_NPM_REGISTRY_URL} \n \
           @fortawesome:registry=https://npm.fontawesome.com/ \n \
           //npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}"> .npmrc
 
-docker login ${INPUT_DOCKER_REGISTRY_URL} -u publisher -p-password-stdin "${REGISTRY_TOKEN}"
+docker login ${INPUT_DOCKER_REGISTRY_URL} -u publisher --password-stdin "${REGISTRY_TOKEN}"
 
 docker build \
     --build-arg REGISTRY_TOKEN=${REGISTRY_TOKEN} \
