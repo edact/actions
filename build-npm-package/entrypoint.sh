@@ -1,17 +1,19 @@
 #!/bin/sh -l
 
-echo "hello $1"
+# printf '@edact:registry=https://npm.pkg.github.com/ \n \
+#           //npm.pkg.github.com/:_authToken=${REGISTRY_TOKEN} \n \
+#           @fortawesome:registry=https://npm.fontawesome.com/ \n \
+#           //npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}
+#           ' > .npmrc
 
-echo "---"
+npm ci
 
-ls
+npm run build
+      
+        
+#V=$(echo $GITHUB_REF| cut -d'/' -f 3)
+#VERSION=$(echo $V| cut -d'v' -f 2)
 
-echo "---"
+#npm --no-git-tag-version version $VERSION --force
 
-cd ..
-
-ls
-
-echo "---"
-
-npm install
+#npm publish
