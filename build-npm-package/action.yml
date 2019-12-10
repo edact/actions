@@ -3,8 +3,8 @@ description: "builds npm package"
 author: "eDACT"
 inputs:
   npm_registry_url:
-    description: "URL of the npm registry"
-    default: "https://npm.pkg.github.com/"
+    description: "URL of the npm registry, no trailing slashes"
+    default: "npm.pkg.github.com"
 runs:
   using: "docker"
   image: "Dockerfile"
