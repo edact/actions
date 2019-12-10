@@ -4,7 +4,14 @@ echo HALLO WELT
 
 echo $tagges
 
-echo $tags
+echo $image_tags
+
+tags=$(echo $tagges | tr ", " "\n")
+
+for addr in $tags
+do
+    echo "> [$addr]"
+done
 
 tagsarr=$(echo $tagges | tr ", " "\n")
 

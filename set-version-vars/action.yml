@@ -2,11 +2,11 @@ name: "set version variables"
 description: "sets version variables based on GITHUB_REF for major, minor and patch version"
 author: "eDACT"
 inputs:
-  tags:
+  image_tags:
     description: "URL of the npm registry, no trailing slashes"
     default: "npm.pkg.github.com"
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.tags }}
+    - ${{ inputs.image_tags }}
