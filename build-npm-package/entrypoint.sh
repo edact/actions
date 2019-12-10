@@ -2,4 +2,8 @@
 
 echo "hello $1"
 
-npm install
+ls
+
+cd ..
+
+ls
