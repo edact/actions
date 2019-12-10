@@ -2,6 +2,8 @@
 
 echo HALLO WELT
 
+echo $tagges
+
 echo $tags
 
 tagsarr=$(echo $tags | tr ", " "\n")
