@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM node:lts-alpine
 
 COPY entrypoint.sh /entrypoint.sh
 
