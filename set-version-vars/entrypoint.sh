@@ -6,7 +6,7 @@ echo $tagges
 
 echo $tags
 
-tagsarr=$(echo $tags | tr ", " "\n")
+tagsarr=$(echo $tagges | tr ", " "\n")
 
 for addr in $tagsarr
 do
