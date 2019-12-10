@@ -1,8 +1,10 @@
 #!/bin/sh -l
 
-echo $TAGS;
+echo HALLO WELT
 
-tagsarr=$(echo $tags | tr ", " "\n")
+echo $TAGS
+
+tagsarr=$(echo $TAGS | tr ", " "\n")
 
 for addr in $tagsarr
 do
