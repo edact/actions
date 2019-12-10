@@ -2,10 +2,9 @@
 
 echo $TAGS;
 
+tagsarr=$(echo $tags | tr ", " "\n")
 
-tags=$(echo $tags | tr ", " "\n")
-
-for addr in $tags
+for addr in $tagsarr
 do
     echo "> [$addr]"
 done
