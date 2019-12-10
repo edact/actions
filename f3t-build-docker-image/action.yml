@@ -3,11 +3,11 @@ description: "builds docker image"
 author: "eDACT"
 inputs:
   docker_registry_url:
-    description: "URL of the docker registry"
-    default: "https://docker.pkg.github.com/"
+    description: "URL of the docker registry, no trailing slashes"
+    default: "docker.pkg.github.com"
   npm_registry_url:
-    description: "URL of the npm registry"
-    default: "https://npm.pkg.github.com/"
+    description: "URL of the npm registry, no trailing slashes"
+    default: "npm.pkg.github.com"
   image_name:
     description: "name of the image"
     required: true
