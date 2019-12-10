@@ -4,9 +4,9 @@ echo HALLO WELT
 
 echo $tagges
 
-echo $input_image_tags
+echo $INPUT_IMAGE_TAGS
 
-tags=$(echo $input_image_tags | tr ", " "\n")
+tags=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
 
 for addr in $tags
 do
