@@ -1,0 +1,12 @@
+name: "build npm package"
+description: "builds npm package"
+author: "eDACT"
+inputs:
+  registry:
+    description: "URL of the npm registry"
+    default: "registry.npm.js"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.registry }}
