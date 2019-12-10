@@ -7,6 +7,6 @@ inputs:
     default: 'world'
 runs:
   using: 'docker'
-  image: 'Wurstfile'
+  image: 'Dockerfile'
   args:
     - ${{ inputs.myInput }}
