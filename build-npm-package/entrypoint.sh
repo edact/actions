@@ -6,18 +6,14 @@ printf "@edact:registry=$1 \n \
           @fortawesome:registry=https://npm.fontawesome.com/ \n \
           //npm.fontawesome.com/:_authToken=$FONTAWESOME_TOKEN"> .npmrc
 
-
-cat .npmrc
-
-
 npm ci
 
-#npm run build
+npm run build
       
         
-#V=$(echo $GITHUB_REF| cut -d'/' -f 3)
-#VERSION=$(echo $V| cut -d'v' -f 2)
+V=$(echo $GITHUB_REF| cut -d'/' -f 3)
+VERSION=$(echo $V| cut -d'v' -f 2)
 
-#npm --no-git-tag-version version $VERSION --force
+npm --no-git-tag-version version $VERSION --force
 
-#npm publish
+npm publish
