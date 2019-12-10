@@ -2,11 +2,19 @@ name: "build npm package"
 description: "builds npm package"
 author: "eDACT"
 inputs:
-  registry:
+  registry_url:
     description: "URL of the npm registry"
-    default: "registry.npm.js"
+    default: "https://npm.pkg.github.com/"
+  registry_token:
+    description: "token to authenticate to the registry"
+    required: true
+  fontawesome_token:
+    description: "token to authenticate to the npm registry"
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
   args:
-    - ${{ inputs.registry }}
+    - ${{ inputs.registry_url }}
+    - ${{inputs.registry_token}}
+    - ${{inputs.fontawesome_token}}
