@@ -2,9 +2,9 @@
 
 echo HALLO WELT
 
-echo $TAGS
+echo $tags
 
-tagsarr=$(echo $TAGS | tr ", " "\n")
+tagsarr=$(echo $tags | tr ", " "\n")
 
 for addr in $tagsarr
 do
