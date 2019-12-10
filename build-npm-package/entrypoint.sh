@@ -1,15 +1,18 @@
 #!/bin/sh -l
 
-printf '@edact:registry=$1 \n \
+
+printf "@edact:registry=$1 \n \
           //npm.pkg.github.com/:_authToken=${REGISTRY_TOKEN} \n \
           @fortawesome:registry=https://npm.fontawesome.com/ \n \
-          //npm.fontawesome.com/:_authToken=${FONTAWESOME_TOKEN}'> .npmrc
+          //npm.fontawesome.com/:_authToken=$FONTAWESOME_TOKEN"> .npmrc
 
+
+cat .npmrc
 
 
 npm ci
 
-npm run build
+#npm run build
       
         
 #V=$(echo $GITHUB_REF| cut -d'/' -f 3)
