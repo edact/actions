@@ -6,7 +6,7 @@ echo $tagges
 
 echo $image_tags
 
-tags=$(echo $tagges | tr ", " "\n")
+tags=$(echo $image_tags | tr ", " "\n")
 
 for addr in $tags
 do
