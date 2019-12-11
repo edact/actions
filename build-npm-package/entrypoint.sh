@@ -4,6 +4,6 @@ npm ci
 
 npm run build
 
-npm --no-git-tag-version version $VERSION_PATCH --force
+npm --no-git-tag-version version $INPUT_PACKAGE_VERSION --force
 
 npm publish
