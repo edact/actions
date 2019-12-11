@@ -6,6 +6,10 @@ inputs:
     description: "URL of the docker registry, no trailing slashes"
     default: "docker.pkg.github.com"
     required: false
+  working_directory:
+    description: "working directory the action should be performed in"
+    default: "."
+    required: false
   image_name:
     description: "name of the image"
     required: true
