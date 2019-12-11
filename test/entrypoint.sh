@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-echo $ARGS
+echo $INPUT_ARG
