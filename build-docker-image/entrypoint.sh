@@ -1,8 +1,5 @@
 #!/bin/sh -l
 
-echo LEGGO
-echo ${INPUT_WORKING_DIRECTORY}
-
 # switch to working directory
 cd ${INPUT_WORKING_DIRECTORY}
 
