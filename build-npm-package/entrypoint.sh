@@ -4,7 +4,7 @@
 npm ci
 
 # build for production
-npm run build
+npm run build --if-present
 
 # set version
 npm --no-git-tag-version version $INPUT_PACKAGE_VERSION --force
