@@ -4,10 +4,7 @@
 docker login ${INPUT_DOCKER_REGISTRY_URL} -u publisher -p "${REGISTRY_TOKEN}"
 
 # build image
-docker build \
-    --build-arg REGISTRY_TOKEN=${REGISTRY_TOKEN} \
-    --build-arg FONTAWESOME_TOKEN=${FONTAWESOME_TOKEN} \
-    -t tempcontainer .
+docker build -t tempcontainer .
 
 # split image tags in array
 image_tags=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
