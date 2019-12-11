@@ -7,3 +7,6 @@ MAJOR=$(echo $VERSION| cut -d'.' -f 1)
 echo "::set-env name=VERSION_PATCH::${VERSION}"
 echo "::set-env name=VERSION_MAJOR::${MAJOR}"
 echo "::set-env name=VERSION_MINOR::${MINOR}"
+
+echo "::set-output name=major::${MAJOR}"
+echo "::set-output name=minor::${MINOR}"
