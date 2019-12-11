@@ -1,5 +1,8 @@
 #!/bin/sh -l
 
+# switch to working directory
+cd ${INPUT_WORKING_DIRECTORY}
+
 # log into docker registry
 docker login ${INPUT_DOCKER_REGISTRY_URL} -u publisher -p "${REGISTRY_TOKEN}"
 
