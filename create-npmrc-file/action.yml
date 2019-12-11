@@ -5,8 +5,7 @@ inputs:
   npm_registry_url:
     description: "URL of the npm registry, no trailing slashes"
     default: "npm.pkg.github.com"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
-  args:
-    - ${{ inputs.npm_registry_url }}

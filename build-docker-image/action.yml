@@ -5,17 +5,13 @@ inputs:
   docker_registry_url:
     description: "URL of the docker registry, no trailing slashes"
     default: "docker.pkg.github.com"
+    required: false
   image_name:
     description: "name of the image"
     required: true
   image_tags:
     description: "list of tags, seperated by comma"
-    default: false
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
-  args:
-    - ${{ inputs.docker_registry_url}}
-    - ${{ inputs.image_name }}
-    - ${{ inputs.image_tags }}
-    - ${{ inputs.release_tags }}
