@@ -25,7 +25,7 @@ inputs:
     required: true
   build_base_tag:
     description: "tag for images the new image should be built upon"
-    default: stable
+    default: latest
     required: false
 runs:
   using: "docker"
