@@ -9,7 +9,7 @@ docker login ${INPUT_DOCKER_REGISTRY_URL} -u ${INPUT_DOCKER_REGISTRY_USER} -p "$
 # build image
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
-    --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG}
+    --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
     -t tempcontainer .
 
 # split image tags in array
