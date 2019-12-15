@@ -4,6 +4,7 @@ author: "eDACT"
 inputs:
   helm_registry_url:
     description: "URL of the helm registry, no trailing slashes"
+    default: registry.edact.de
     required: true
   working_directory:
     description: "working directory the action should be performed in"
@@ -15,13 +16,10 @@ inputs:
   chart_tags:
     description: "list of tags, seperated by comma"
     required: true
-  repository_name:
-    description: "name of repository in registry"
-    required: true
-  registry_user:
+  helm_registry_user:
     description: "name of registry user"
     required: true
-  registry_token:
+  helm_registry_token:
     description: "token of registry user"
     required: true
 runs:
