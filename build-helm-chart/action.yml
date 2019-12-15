@@ -18,6 +18,7 @@ inputs:
     required: true
   helm_registry_user:
     description: "name of registry user"
+    default: "publisher"
     required: true
   helm_registry_token:
     description: "token of registry user"
