@@ -1,2 +1,2 @@
-# Actions for our CI/CD pipelines
-
+# actions
+GitHub Action templates for eDACT 3.0.
