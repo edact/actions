@@ -1,4 +1,5 @@
 #!/bin/sh -l
+set -e
 
 export HELM_EXPERIMENTAL_OCI=1
 
