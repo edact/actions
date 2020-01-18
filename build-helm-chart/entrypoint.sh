@@ -11,6 +11,9 @@ helm registry login -u "${INPUT_HELM_REGISTRY_USER}" -p "${INPUT_HELM_REGISTRY_T
 # split chart tags in array
 chart_tags=$(echo $INPUT_CHART_TAGS | tr ", " "\n")
 
+# lint helm chart
+helm lint .
+
 # set tags
 for chart_tag in $chart_tags
 do 
