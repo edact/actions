@@ -1,0 +1,11 @@
+name: "create auth.json file for composer"
+description: "creates auth.json file needed for composer"
+author: "eDACT"
+inputs:
+  registry_url:
+    description: "URL of the registry, no trailing slashes"
+    default: "github.com"
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
