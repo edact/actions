@@ -6,6 +6,9 @@ inputs:
     description: "URL of the registry, no trailing slashes"
     default: "github.com"
     required: false
+  location:
+    description: "location for generated file, no trailing slashes"
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
