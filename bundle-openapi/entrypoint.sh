@@ -20,4 +20,5 @@ DIR=$(dirname "${INPUT_INPUT_PATH}")
 cd ${DIR}
 rm ${INPUT_DELETE_GLOB}
 
-ls **/*
+ls
+ls openapi
