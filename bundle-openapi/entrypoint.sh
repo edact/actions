@@ -19,6 +19,3 @@ npx -p @apidevtools/swagger-cli swagger-cli bundle ${INPUT_INPUT_PATH} -o ${INPU
 DIR=$(dirname "${INPUT_INPUT_PATH}")
 cd ${DIR}
 rm ${INPUT_DELETE_GLOB}
-
-ls
-ls openapi
