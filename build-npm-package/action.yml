@@ -2,10 +2,6 @@ name: "build npm package"
 description: "builds npm package"
 author: "eDACT"
 inputs:
-  npm_registry_url:
-    description: "URL of the npm registry, no trailing slashes"
-    default: "npm.pkg.github.com"
-    required: false
   package_version:
     description: "version the package should get"
     required: true

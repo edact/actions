@@ -10,4 +10,4 @@ npm run build --if-present
 npm --no-git-tag-version version $INPUT_PACKAGE_VERSION --force
 
 # publish package to registry
-npm publish --registry https://$INPUT_NPM_REGISTRY_URL
+npm publish
