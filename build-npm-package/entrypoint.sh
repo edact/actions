@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 # install dependencies needed for production
-npm ci
+npm install
 
 # build for production
 npm run build --if-present
