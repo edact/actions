@@ -4,7 +4,7 @@
 rm package-lock.json
 
 # install dependencies needed for production
-npm install --production
+npm install
 
 # build for production
 npm run build --if-present
