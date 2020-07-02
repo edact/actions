@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 # remove locked dependency versions
-rm package-lock.json
+rm package-lock.json -f
 
 # install dependencies needed for production
 npm install
