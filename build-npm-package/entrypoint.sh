@@ -1,7 +1,10 @@
 #!/bin/sh -l
 
+# remove locked dependency versions
+rm package-lock.json
+
 # install dependencies needed for production
-npm install
+npm install --production
 
 # build for production
 npm run build --if-present
