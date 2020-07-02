@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 # install dependencies needed for production
-npm install
+npm update
 
 # run tests specified in package.json
 npm run test --if-present
