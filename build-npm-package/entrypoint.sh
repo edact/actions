@@ -3,7 +3,7 @@
 # remove locked dependency versions
 rm package-lock.json -f
 
-# install dependencies needed for production
+# install dependencies
 npm install
 
 # build for production
