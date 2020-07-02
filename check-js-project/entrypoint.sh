@@ -3,7 +3,7 @@
 # install dependencies needed for production
 rm package-lock.json
 
-npm install
+npm install --production
 
 # run tests specified in package.json
 npm run test --if-present
