@@ -1,7 +1,9 @@
 #!/bin/sh -l
 
 # install dependencies needed for production
-npm update
+rm package-lock.json
+
+npm install
 
 # run tests specified in package.json
 npm run test --if-present
