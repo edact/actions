@@ -16,7 +16,7 @@ if [ "${INPUT_OUTPUT_PATH}"=="defaultpath" ]
 fi
 
 # bundle
-npx -p @apidevtools/swagger-cli swagger-cli bundle ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
+npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
 
 # delete sub files by glob
 DIR=$(dirname "${INPUT_INPUT_PATH}")
