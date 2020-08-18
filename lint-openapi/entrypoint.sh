@@ -9,4 +9,4 @@ if [ "${INPUT_INPUT_PATH}"=="defaultpath" ]
 fi
 
 # lint
-npx -p @stoplightio/spectral spectral lint ${INPUT_INPUT_PATH}
+npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema
