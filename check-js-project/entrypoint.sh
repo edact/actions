@@ -3,6 +3,9 @@
 # remove locked dependency versions
 rm package-lock.json -f
 
+# set mode to production
+NODE_ENV="production"
+
 # install dependencies
 npm install
 
