@@ -7,7 +7,7 @@ rm package-lock.json -f
 $NODE_ENV="production"
 
 # install dependencies
-npm install
+npm install --production
 
 # run tests specified in package.json
 npm run test --if-present
