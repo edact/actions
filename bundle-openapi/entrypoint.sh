@@ -3,12 +3,9 @@
 # find out folder name by repo name
 FOLDER=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
 
-# update submodule
-git submodule update --remote
-
 # compute input and output path if not given
 if [ "${INPUT_INPUT_PATH}"=="defaultpath" ]
-    then INPUT_INPUT_PATH="$FOLDER/api/public/openapi_raw.yml"
+    then INPUT_INPUT_PATH="$FOLDER/api/public/openapi-raw.yml"
 fi
 
 if [ "${INPUT_OUTPUT_PATH}"=="defaultpath" ]
