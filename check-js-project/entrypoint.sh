@@ -4,7 +4,7 @@
 rm package-lock.json -f
 
 # set mode to production
-$NODE_ENV="production"
+export NODE_ENV="production"
 
 # install dependencies
 npm install --production
