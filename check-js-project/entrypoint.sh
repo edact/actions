@@ -3,14 +3,14 @@
 # remove locked dependency versions
 rm package-lock.json -f
 
-# set mode to production
-export NODE_ENV="production"
-
 # install dependencies
-npm install --production
+npm install
 
 # run tests specified in package.json
 npm run test --if-present
+
+# set mode to production
+export NODE_ENV="production"
 
 # lint project
 npm run lint --if-present
