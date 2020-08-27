@@ -12,8 +12,8 @@ if [ "${INPUT_OUTPUT_PATH}"=="defaultpath" ]
     then INPUT_OUTPUT_PATH="$FOLDER/api/public/openapi.yml"
 fi
 
-if [ ! -f "$FILE" ]; then
-    echo "$FILE does not exist!"
+if [ ! -f "$INPUT_INPUT_PATH" ]; then
+    echo "$INPUT_INPUT_PATH does not exist!"
     exit 1
 fi
 
