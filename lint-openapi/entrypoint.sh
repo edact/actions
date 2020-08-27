@@ -16,8 +16,8 @@ fi
 # lint
 npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema --output spectral-results.txt
 
-cat spectral-results.txt
+# cat spectral-results.txt
 
 RESULT=$(cat spectral-results.txt)
 
-echo "::warning::$RESULT"
+echo "::warning::$RESULT aa"
