@@ -17,6 +17,9 @@ if test -f "$INPUT_INPUT_PATH"; then
     exit 1
 fi
 
+# delete output file
+rm ${INPUT_OUTPUT_FILETYPE} -v -f
+
 # bundle
 npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
 
