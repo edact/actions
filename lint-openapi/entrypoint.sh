@@ -16,4 +16,14 @@ fi
 echo "GUMOO"
 
 # lint
-npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema | ( read RESULT; echo "::warning::$RESULT"; )
+npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema -o spectral.txt
+
+RESULT=$(cat spectral.txt)
+
+echo "Hallo Welt" > test.txt
+
+R=$(cat test.txt)
+
+echo "::warning::$R"
+
+echo "::warning::$RESULT"
