@@ -14,8 +14,4 @@ if [ ! -f "$INPUT_INPUT_PATH" ]; then
 fi
 
 # lint
-npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema --output=spectral-output.txt
-
-RESULT=$(cat spectral-output.txt)
-
-echo "::warning::$RESULT"
+npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema | ( read RESULT; echo "::warning::$RESULT"; )
