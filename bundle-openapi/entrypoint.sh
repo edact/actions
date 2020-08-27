@@ -12,6 +12,14 @@ if [ "${INPUT_OUTPUT_PATH}"=="defaultpath" ]
     then INPUT_OUTPUT_PATH="$FOLDER/api/public/openapi.yml"
 fi
 
+if [ ! -f "$INPUT_INPUT_PATH" ]; then
+    echo "::error::$INPUT_INPUT_PATH does not exist!"
+    exit 1
+fi
+
+# delete output file
+rm ${INPUT_OUTPUT_FILETYPE} -v -f
+
 # bundle
 npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
 
