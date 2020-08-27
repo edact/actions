@@ -13,7 +13,7 @@ if [ ! -f "$INPUT_INPUT_PATH" ]; then
     exit 1
 fi
 
-echo "GUMOO"
+echo "tryyy"
 
 # lint
 npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema > spectral.txt
