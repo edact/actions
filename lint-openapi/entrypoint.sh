@@ -8,5 +8,10 @@ if [ "${INPUT_INPUT_PATH}"=="defaultpath" ]
     then INPUT_INPUT_PATH="$FOLDER/api/public/openapi.yml"
 fi
 
+if test -f "$INPUT_INPUT_PATH"; then
+    echo "$FILE does not exist!"
+    exit 1
+fi
+
 # lint
 npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema
