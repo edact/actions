@@ -13,7 +13,7 @@ if [ "${INPUT_OUTPUT_PATH}"=="defaultpath" ]
 fi
 
 if [ ! -f "$INPUT_INPUT_PATH" ]; then
-    echo "$INPUT_INPUT_PATH does not exist!"
+    echo "::error::$INPUT_INPUT_PATH does not exist!"
     exit 1
 fi
 
