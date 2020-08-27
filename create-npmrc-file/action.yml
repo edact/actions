@@ -6,6 +6,10 @@ inputs:
     description: "URL of the npm registry, no trailing slashes"
     default: "npm.pkg.github.com"
     required: false
+  npm_scope:
+    description: "scope that should be used"
+    default: "@edact"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
