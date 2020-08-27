@@ -13,11 +13,9 @@ if [ ! -f "$INPUT_INPUT_PATH" ]; then
     exit 1
 fi
 
+echo "HALLLLOOO"
+
 # lint
-npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema --output=spectral-results.txt
+npx -p @stoplight/spectral spectral lint e3t-module-school/api/public/openapi.yml --skip-rule oas3-unused-components-schema
 
-# cat spectral-results.txt
-
-RESULT=$(cat spectral-results.txt)
-
-echo "::warning::$RESULT aa"
+echo "::warning::aa"
