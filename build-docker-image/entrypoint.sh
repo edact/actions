@@ -4,7 +4,7 @@
 cd ${INPUT_WORKING_DIRECTORY}
 
 # log into docker registry
-docker login ${INPUT_DOCKER_REGISTRY_URL} -u ${INPUT_DOCKER_REGISTRY_USER} -p "${INPUT_DOCKER_REGISTRY_TOKEN}"
+echo ${INPUT_DOCKER_REGISTRY_TOKEN} | docker login -u ${INPUT_DOCKER_REGISTRY_USER} --password-stdin ${INPUT_DOCKER_REGISTRY_URL}
 
 # build image
 docker build \
