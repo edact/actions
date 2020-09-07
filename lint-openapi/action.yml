@@ -1,23 +1,12 @@
-name: "bundle openapi spec"
-description: "bundles multiple openapi files into one"
+name: "lint openapi file"
+description: "lints a given openapi file with spectral"
 author: "eDACT"
 inputs:
   input_path:
-    description: "path to file that should be dereferenced"
+    description: "path to file that should linted"
     default: "defaultpath"
     required: false
-  output_path:
-    description: "path to output file"
-    default: "defaultpath"
-    required: false
-  output_filetype:
-    description: "json or yaml"
-    default: "yaml"
-    required: false
-  delete_glob:
-    description: "glob pattern to delete child openapi files relative to input path"
-    default: "**/*.oas.*"
-    required: false
+
 runs:
   using: "docker"
   image: "Dockerfile"
