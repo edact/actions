@@ -29,6 +29,8 @@ fi
 
 
 # delete sub files by glob
-DIR=$(dirname "${INPUT_INPUT_PATH}")
-cd ${DIR}
-rm ${INPUT_DELETE_GLOB} -v -f
+if [ "$INPUT_DELETE_FILES" = true ] ; then
+    DIR=$(dirname "${INPUT_INPUT_PATH}")
+    cd ${DIR}
+    rm ${INPUT_DELETE_GLOB} -v -f
+fi

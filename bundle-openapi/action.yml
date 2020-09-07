@@ -18,6 +18,10 @@ inputs:
     description: "boolean wether to fully derefence the json"
     default: "false"
     required: false
+  delete_files:
+    description: boolean wether  to delete files
+    default: "false"
+    required: false
   delete_glob:
     description: "glob pattern to delete child openapi files relative to input path"
     default: "**/*.oas.*"
