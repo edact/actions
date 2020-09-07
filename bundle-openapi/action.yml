@@ -20,7 +20,7 @@ inputs:
     required: false
   delete_files:
     description: boolean wether  to delete files
-    default: "false"
+    default: "true"
     required: false
   delete_glob:
     description: "glob pattern to delete child openapi files relative to input path"
