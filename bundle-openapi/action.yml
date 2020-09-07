@@ -24,7 +24,7 @@ inputs:
     required: false
   dereference:
     description: "boolean wether to fully derefence the json"
-    default: "false"
+    default: "true"
     required: false
   delete_files:
     description: boolean wether  to delete files
