@@ -21,7 +21,12 @@ fi
 rm ${INPUT_OUTPUT_FILETYPE} -v -f
 
 # bundle
-npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
+if [ "$INPUT_DEREFERENCE" = true ] ; then
+    npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
+else
+    npx -p @apidevtools/swagger-cli swagger-cli bundle ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
+fi
+
 
 # delete sub files by glob
 DIR=$(dirname "${INPUT_INPUT_PATH}")

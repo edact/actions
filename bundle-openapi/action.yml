@@ -14,6 +14,10 @@ inputs:
     description: "json or yaml"
     default: "yaml"
     required: false
+  dereference:
+    description: "boolean wether to fully derefence the json"
+    default: "false"
+    required: false
   delete_glob:
     description: "glob pattern to delete child openapi files relative to input path"
     default: "**/*.oas.*"
