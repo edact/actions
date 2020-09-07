@@ -4,19 +4,19 @@
 FOLDER=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
 
 # compute input and output path if not given
-if [ "${INPUT_INPUT_DIR}"=="defaultdir" ]
+if [ "${INPUT_INPUT_DIR}"="defaultdir" ]
     then INPUT_INPUT_DIR="$FOLDER/api/public"
 fi
 
-if [ "${INPUT_OUTPUT_DIR}"=="defaultdir" ]
+if [ "${INPUT_OUTPUT_DIR}"="defaultdir" ]
     then INPUT_OUTPUT_DIR="$FOLDER/api/public"
 fi
 
-if [ "${INPUT_INPUT_FILENAME}"=="defaultname" ]
+if [ "${INPUT_INPUT_FILENAME}"="defaultname" ]
     then INPUT_INPUT_FILENAME="openapi-raw.yml"
 fi
 
-if [ "${INPUT_OUTPUT_FILENAME}"=="defaultname" ]
+if [ "${INPUT_OUTPUT_FILENAME}"="defaultname" ]
     then INPUT_OUTPUT_FILENAME="openapi.yml"
 fi
 
