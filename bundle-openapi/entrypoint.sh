@@ -4,16 +4,27 @@
 FOLDER=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
 
 # compute input and output path if not given
-if [ "${INPUT_INPUT_PATH}" = "defaultpath" ]
-    then INPUT_INPUT_PATH="$FOLDER/api/public/openapi-raw.yml"
+if [ "${INPUT_INPUT_DIR}" = "defaultdir" ]
+    then INPUT_INPUT_DIR="$FOLDER/api/public"
 fi
 
-if [ "${INPUT_OUTPUT_PATH}" = "defaultpath" ]
-    then INPUT_OUTPUT_PATH="$FOLDER/api/public/openapi.yml"
+if [ "${INPUT_OUTPUT_DIR}" = "defaultdir" ]
+    then INPUT_OUTPUT_DIR="$FOLDER/api/public"
 fi
 
-if [ ! -f "$INPUT_INPUT_PATH" ]; then
-    echo "::error::$INPUT_INPUT_PATH does not exist!"
+if [ "${INPUT_INPUT_FILENAME}" = "defaultname" ]
+    then INPUT_INPUT_FILENAME="openapi-raw.yml"
+fi
+
+if [ "${INPUT_OUTPUT_FILENAME}" = "defaultname" ]
+    then INPUT_OUTPUT_FILENAME="openapi.yml"
+fi
+
+INPUT_PATH="$INPUT_INPUT_DIR/$INPUT_INPUT_FILENAME"
+OUTPUT_PATH="$INPUT_OUTPUT_DIR/$INPUT_OUTPUT_FILENAME"
+
+if [ ! -f "$INPUT_PATH" ]; then
+    echo "::error::$INPUT_PATH does not exist!"
     exit 1
 fi
 
@@ -21,9 +32,16 @@ fi
 rm ${INPUT_OUTPUT_FILETYPE} -v -f
 
 # bundle
-npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_INPUT_PATH} -o ${INPUT_OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
+if [ "$INPUT_DEREFERENCE" = true ] ; then
+    npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_PATH} -o ${OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
+else
+    npx -p @apidevtools/swagger-cli swagger-cli bundle ${INPUT_PATH} -o ${OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
+fi
+
 
 # delete sub files by glob
-DIR=$(dirname "${INPUT_INPUT_PATH}")
-cd ${DIR}
-rm ${INPUT_DELETE_GLOB} -v -f
+if [ "$INPUT_DELETE_FILES" = true ] ; then
+    DIR=$(dirname "${INPUT_PATH}")
+    cd ${DIR}
+    rm ${INPUT_DELETE_GLOB} -v -f
+fi

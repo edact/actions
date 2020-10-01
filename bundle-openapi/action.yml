@@ -2,17 +2,33 @@ name: "bundle openapi spec"
 description: "bundles multiple openapi files into one"
 author: "eDACT"
 inputs:
-  input_path:
-    description: "path to file that should be dereferenced"
-    default: "defaultpath"
+  input_dir:
+    description: "directory of file that should be dereferenced"
+    default: "defaultdir"
     required: false
-  output_path:
-    description: "path to output file"
-    default: "defaultpath"
+  output_dir:
+    description: "directory of output file"
+    default: "defaultdir"
+    required: false
+  input_filename:
+    description: "name of file that should be dereferenced"
+    default: "defaultname"
+    required: false
+  output_filename:
+    description: "name of output file"
+    default: "defaultname"
     required: false
   output_filetype:
     description: "json or yaml"
     default: "yaml"
+    required: false
+  dereference:
+    description: "boolean wether to fully derefence the json"
+    default: "false"
+    required: false
+  delete_files:
+    description: boolean wether  to delete files
+    default: "true"
     required: false
   delete_glob:
     description: "glob pattern to delete child openapi files relative to input path"
