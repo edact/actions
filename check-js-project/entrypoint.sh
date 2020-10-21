@@ -13,4 +13,4 @@ npm run test --if-present
 export NODE_ENV="production"
 
 # lint project
-npm run lint --if-present
+npm run lint --if-present --no-fix
