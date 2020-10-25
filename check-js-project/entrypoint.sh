@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 # remove locked dependency versions
-rm package-lock.json -f
+# rm package-lock.json -f
 
 # install dependencies
 npm install
