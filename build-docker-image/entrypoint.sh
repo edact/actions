@@ -1,5 +1,8 @@
 #!/bin/sh -l
 
+# makes the script existing once an error occours
+set -e
+
 # switch to working directory
 cd ${INPUT_WORKING_DIRECTORY}
 
