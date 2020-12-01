@@ -7,10 +7,12 @@ cd ${INPUT_WORKING_DIRECTORY}
 echo ${INPUT_DOCKER_REGISTRY_TOKEN} | docker login -u ${INPUT_DOCKER_REGISTRY_USER} --password-stdin ${INPUT_DOCKER_REGISTRY_URL}
 
 # build image
+echo "::group::Build image"
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
     -t tempcontainer:latest .
+echo "::endgroup::"
 
 # split image tags in array
 image_tags=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
@@ -22,4 +24,6 @@ do
 done
 
 # push image to registry
+echo "::group::Push image"
 docker push ${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_NAME}
+echo "::endgroup::"

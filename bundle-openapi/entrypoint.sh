@@ -29,19 +29,25 @@ if [ ! -f "$INPUT_PATH" ]; then
 fi
 
 # delete output file
+echo "::group::Delete output file"
 rm ${INPUT_OUTPUT_FILETYPE} -v -f
+echo "::endgroup::"
 
 # bundle
+echo "::group::Bundle file"
 if [ "$INPUT_DEREFERENCE" = true ] ; then
     npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_PATH} -o ${OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
 else
     npx -p @apidevtools/swagger-cli swagger-cli bundle ${INPUT_PATH} -o ${OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
 fi
+echo "::endgroup::"
 
 
 # delete sub files by glob
+echo "::group::Delete sub files"
 if [ "$INPUT_DELETE_FILES" = true ] ; then
     DIR=$(dirname "${INPUT_PATH}")
     cd ${DIR}
     rm ${INPUT_DELETE_GLOB} -v -f
 fi
+echo "::endgroup::"
