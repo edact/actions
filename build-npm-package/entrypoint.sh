@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
-# remove locked dependency versions
-# rm package-lock.json -f
+# makes the script existing once an error occours
+set -e
 
 # install dependencies
 echo "::group::Install package dependencies"

@@ -1,5 +1,8 @@
 #!/bin/sh -l
 
+# makes the script existing once an error occours
+set -e
+
 # compute values
 VERSION=$(echo $GITHUB_REF| cut -d'/' -f 3)
 MINOR=$(echo $VERSION| cut -d'.' -f 1,2)
