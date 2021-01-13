@@ -5,7 +5,7 @@
 
 # install dependencies
 echo "::group::Install package dependencies"
-npm install
+npm ci
 echo "::endgroup::"
 
 # build for production
