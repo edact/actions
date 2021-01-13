@@ -3,7 +3,8 @@
 # makes the script existing once an error occours
 set -e
 npm whoami
-npm adduser --registry=https://npm.pkg.github.com --scope=@edact
+#npm adduser --registry=https://npm.pkg.github.com --scope=@edact
+exit
 
 # install dependencies
 echo "::group::Install package dependencies"
