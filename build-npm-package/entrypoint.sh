@@ -2,9 +2,10 @@
 
 # makes the script existing once an error occours
 set -e
-npm whoami
+
 #npm adduser --registry=https://npm.pkg.github.com --scope=@edact
-exit
+#npm whoami
+#exit
 
 # install dependencies
 echo "::group::Install package dependencies"
@@ -21,5 +22,5 @@ npm --no-git-tag-version version $INPUT_PACKAGE_VERSION --force
 
 # publish package to registry
 echo "::group::Publish package"
-npm publish --registry https://npm.pkg.github.com
+npm publish
 echo "::endgroup::"
