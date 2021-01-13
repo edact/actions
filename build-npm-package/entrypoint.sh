@@ -18,5 +18,5 @@ npm --no-git-tag-version version $INPUT_PACKAGE_VERSION --force
 
 # publish package to registry
 echo "::group::Publish package"
-npm publish
+npm publish --registry npm.pkg.github.com/edact/f3t-vue-components
 echo "::endgroup::"
