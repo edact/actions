@@ -23,6 +23,7 @@ image_tags=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
 # set tags
 for image_tag in $image_tags
 do
+    echo $image_tag
     docker tag tempcontainer:latest ${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_NAME}:${image_tag}    
 done
 
