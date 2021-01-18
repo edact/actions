@@ -30,5 +30,5 @@ done
 
 # push image to registry
 echo "::group::Push image"
-docker push ${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_NAME}
+docker push ${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_NAME} --all-tags
 echo "::endgroup::"
