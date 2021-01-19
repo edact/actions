@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 # makes the script existing once an error occours
-set -euo pipefail
+set -e
 
 # install dependencies
 echo "::group::Install dependencies"
