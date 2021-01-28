@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 # makes the script existing once an error occours
-set -euo pipefail
+set -eu
 
 #npm adduser --registry=https://npm.pkg.github.com --scope=@edact
 #npm whoami
