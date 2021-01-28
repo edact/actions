@@ -4,7 +4,6 @@ author: "eDACT"
 inputs:
   input_path:
     description: "path to file that should linted"
-    default: "defaultpath"
     required: false
 
 runs:

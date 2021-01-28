@@ -4,19 +4,15 @@ author: "eDACT"
 inputs:
   input_dir:
     description: "directory of file that should be dereferenced"
-    default: "defaultdir"
     required: false
   output_dir:
     description: "directory of output file"
-    default: "defaultdir"
     required: false
   input_filename:
     description: "name of file that should be dereferenced"
-    default: "defaultname"
     required: false
   output_filename:
     description: "name of output file"
-    default: "defaultname"
     required: false
   output_filetype:
     description: "json or yaml"
