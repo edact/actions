@@ -7,27 +7,22 @@ set -eu
 FOLDER=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
 
 # compute input and output path if not given
-if [ "${INPUT_INPUT_DIR}" = "defaultdir" ]
-    then INPUT_INPUT_DIR="$FOLDER/api/public"
-fi
-
-if [ "${INPUT_OUTPUT_DIR}" = "defaultdir" ]
-    then INPUT_OUTPUT_DIR="$FOLDER/api/public"
-fi
-
-if [ "${INPUT_INPUT_FILENAME}" = "defaultname" ]
-    then INPUT_INPUT_FILENAME="openapi-raw.yml"
-fi
-
-if [ "${INPUT_OUTPUT_FILENAME}" = "defaultname" ]
-    then INPUT_OUTPUT_FILENAME="openapi.yml"
-fi
+INPUT_INPUT_DIR=${INPUT_INPUT_DIR:-"$FOLDER/api/public"}
+INPUT_OUTPUT_DIR=${INPUT_OUTPUT_DIR:-"$FOLDER/api/public"}
+INPUT_INPUT_FILENAME=${INPUT_INPUT_FILENAME:-"openapi-raw.yml"}
+INPUT_OUTPUT_FILENAME=${INPUT_OUTPUT_FILENAME:-"openapi.yml"}
 
 INPUT_PATH="$INPUT_INPUT_DIR/$INPUT_INPUT_FILENAME"
 OUTPUT_PATH="$INPUT_OUTPUT_DIR/$INPUT_OUTPUT_FILENAME"
 
 if [ ! -f "$INPUT_PATH" ]; then
     echo "::error::$INPUT_PATH does not exist!"
+    exit 1
+fi
+
+# check if requested filetype is correct
+if [ "$INPUT_OUTPUT_FILETYPE" != "yaml" ] && [ "$INPUT_OUTPUT_FILETYPE" != "json" ] ; then
+    echo "::error::FILETYPE must be either 'yaml' or 'json'!"
     exit 1
 fi
 
