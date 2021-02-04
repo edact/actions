@@ -29,10 +29,10 @@ if [ "$INPUT_USE_CACHE_MULTISTAGE" = true ] ; then
     docker pull ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} --quiet || true
 
     docker build \
-    --target ${INPUT_CACHE_BUILD_STAGE}
+    --target ${INPUT_CACHE_BUILD_STAGE} \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
-    --cache-from=${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG}
+    --cache-from=${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} \
     -t ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} .
 
     docker push ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG}
