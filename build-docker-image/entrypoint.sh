@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/sh -l
 
 # makes the script existing once an error occours
 set -euo pipefail
@@ -12,22 +12,23 @@ echo ${INPUT_DOCKER_REGISTRY_TOKEN} | docker login -u ${INPUT_DOCKER_REGISTRY_US
 FULL_IMAGE_NAME=${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_NAME}
 
 # split image tags in array
-IFS=', ' read -r -a IMAGE_TAGS <<< "$INPUT_IMAGE_TAGS"
+IMAGE_TAGS=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
+FIRST_IMAGE_TAG=$INPUT_IMAGE_TAGS | cut -f1 -d","
 
 # pull image for caching
-docker pull ${FULL_IMAGE_NAME}:${IMAGE_TAGS[0]} --quiet
+docker pull ${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG} --quiet
 
 # build image
 echo "::group::Build image"
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
-    --cache-from=${FULL_IMAGE_NAME}:${IMAGE_TAGS[0]} \
+    --cache-from=${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG} \
     -t tempcontainer:latest .
 echo "::endgroup::"
 
 # set tags
-for IMAGE_TAG in "${IMAGE_TAGS[@]}"
+for IMAGE_TAG in $IMAGE_TAGS
 do
     docker tag tempcontainer:latest ${FULL_IMAGE_NAME}:${IMAGE_TAG}    
 done
