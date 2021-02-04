@@ -39,6 +39,9 @@ inputs:
     description: ""
     required: false
     default: "true"
+  cache_build_stage:
+    description: ""
+    required: false
 
 runs:
   using: "docker"
