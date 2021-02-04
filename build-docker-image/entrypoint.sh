@@ -20,7 +20,7 @@ CACHE_FROM_STRING=""
 for CACHE_TAG in $CACHE_TAGS
 do
     docker pull ${FULL_IMAGE_NAME}:${CACHE_TAG} --quiet || true
-    CACHE_FROM_STRING=$CACHE_FROM_STRING+" --cache-from=${FULL_IMAGE_NAME}:${CACHE_TAG}"
+    CACHE_FROM_STRING=${CACHE_FROM_STRING}" --cache-from=${FULL_IMAGE_NAME}:${CACHE_TAG}"
 done
 
 # pull image for caching
@@ -54,8 +54,8 @@ echo $CACHE_FROM_STRING
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
-    $( [ -n "$INPUT_TARGET_STAGE" ] && printf %s "--target $INPUT_TARGET_STAGE") \
-    $( [ -n "$INPUT_CACHE_TAGS" ] && printf %s "$CACHE_FROM_STRING") \
+    $( [ -n "$INPUT_TARGET_STAGE" ] && printf %s "--target $INPUT_TARGET_STAGE" ) \
+    $( [ -n "$INPUT_CACHE_TAGS" ] && printf %s "$CACHE_FROM_STRING" ) \
     -t tempcontainer:latest .
 echo "::endgroup::"
 
