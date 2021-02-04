@@ -49,11 +49,13 @@ done
 
 # build image
 echo "::group::Build image"
+echo $CACHE_FROM_STRING
+
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
-    $( (($INPUT_TARGET_STAGE)) && printf %s "--target $INPUT_TARGET_STAGE") \
-    $( (($INPUT_CACHE_TAGS)) && printf %s "$CACHE_FROM_STRING") \
+    $( [ -n "$INPUT_TARGET_STAGE" ] && printf %s "--target $INPUT_TARGET_STAGE") \
+    $( [ -n "$INPUT_CACHE_TAGS" ] && printf %s "$CACHE_FROM_STRING") \
     -t tempcontainer:latest .
 echo "::endgroup::"
 
