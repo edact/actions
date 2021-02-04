@@ -20,12 +20,31 @@ if [ "$INPUT_USE_CACHE" = true ] ; then
     docker pull ${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG} --quiet
 fi
 
+INPUT_USE_CACHE_MULTISTAGE=true
+
+# pull image for caching
+if [ "$INPUT_USE_CACHE_MULTISTAGE" = true ] ; then
+    INPUT_CACHE_BUILD_STAGE="build-stage"
+    BUILD_STAGE_IMAGE_TAG="cache/${INPUT_CACHE_BUILD_STAGE}"
+    docker pull ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} --quiet || true
+
+    docker build \
+    --target ${INPUT_CACHE_BUILD_STAGE}
+    --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
+    --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
+    --cache-from=${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG}
+    -t ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} .
+
+    docker push ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG}
+fi
+
 # build image
 echo "::group::Build image"
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
     $( (("$INPUT_USE_CACHE" = true)) && printf %s "--cache-from=${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG}") \
+    $( (("$INPUT_USE_CACHE" = true)) && (("$INPUT_USE_CACHE_MULTISTAGE" = true)) && printf %s "--cache-from=${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG}") \
     -t tempcontainer:latest .
 echo "::endgroup::"
 
