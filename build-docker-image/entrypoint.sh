@@ -12,7 +12,7 @@ echo ${INPUT_DOCKER_REGISTRY_TOKEN} | docker login -u ${INPUT_DOCKER_REGISTRY_US
 FULL_IMAGE_NAME=${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_NAME}
 
 # pull image for caching
-docker pull ${FULL_IMAGE_NAME}
+docker pull ${FULL_IMAGE_NAME}:feature
 
 # build image
 echo "::group::Build image"
