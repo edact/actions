@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash -l
 
 # makes the script existing once an error occours
 set -euo pipefail
