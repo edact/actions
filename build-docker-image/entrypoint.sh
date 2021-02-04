@@ -11,25 +11,25 @@ echo ${INPUT_DOCKER_REGISTRY_TOKEN} | docker login -u ${INPUT_DOCKER_REGISTRY_US
 
 FULL_IMAGE_NAME=${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_NAME}
 
+# split image tags in array
+IFS=', ' read -r -a IMAGE_TAGS <<< "$INPUT_IMAGE_TAGS"
+
 # pull image for caching
-docker pull ${FULL_IMAGE_NAME}:feature --quiet
+docker pull ${FULL_IMAGE_NAME}:${IMAGE_TAGS[0]} --quiet
 
 # build image
 echo "::group::Build image"
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
-    --cache-from=${FULL_IMAGE_NAME}:feature \
+    --cache-from=${FULL_IMAGE_NAME}:${IMAGE_TAGS[0]} \
     -t tempcontainer:latest .
 echo "::endgroup::"
 
-# split image tags in array
-image_tags=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
-
 # set tags
-for image_tag in $image_tags
+for IMAGE_TAG in "${IMAGE_TAGS[@]}"
 do
-    docker tag tempcontainer:latest ${FULL_IMAGE_NAME}:${image_tag}    
+    docker tag tempcontainer:latest ${FULL_IMAGE_NAME}:${IMAGE_TAG}    
 done
 
 # push image to registry
