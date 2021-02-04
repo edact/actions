@@ -25,7 +25,7 @@ INPUT_USE_CACHE_MULTISTAGE=true
 # pull image for caching
 if [ "$INPUT_USE_CACHE_MULTISTAGE" = true ] ; then
     INPUT_CACHE_BUILD_STAGE="build-stage"
-    BUILD_STAGE_IMAGE_TAG="cache/${INPUT_CACHE_BUILD_STAGE}"
+    BUILD_STAGE_IMAGE_TAG="cache-${INPUT_CACHE_BUILD_STAGE}"
     docker pull ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} --quiet || true
 
     docker build \
