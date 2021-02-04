@@ -45,7 +45,7 @@ docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
     $( (("$INPUT_USE_CACHE" = true)) && printf %s "--cache-from=${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG}") \
-    # $( (("$INPUT_USE_CACHE" = true)) && ((-n "$INPUT_CACHE_BUILD_STAGE")) && printf %s "--cache-from=${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG}") \
+    $( (("$INPUT_USE_CACHE" = true)) && ((-n "$INPUT_CACHE_BUILD_STAGE")) && printf %s "--cache-from=${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG}") \
     --cache-from=${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} \
     -t tempcontainer:latest .
 echo "::endgroup::"
