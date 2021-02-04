@@ -13,7 +13,7 @@ FULL_IMAGE_NAME=${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_
 
 # split image tags in array
 IMAGE_TAGS=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
-FIRST_IMAGE_TAG=$($INPUT_IMAGE_TAGS | cut -f1 -d",")
+FIRST_IMAGE_TAG=$(echo $INPUT_IMAGE_TAGS | cut -f1 -d",")
 
 # pull image for caching
 docker pull ${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG} --quiet
