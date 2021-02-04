@@ -19,7 +19,7 @@ echo "::group::Build image"
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
-    --cache-from=${FULL_IMAGE_NAME}
+    --cache-from=${FULL_IMAGE_NAME} \
     -t tempcontainer:latest .
 echo "::endgroup::"
 
