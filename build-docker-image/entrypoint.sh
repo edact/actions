@@ -15,6 +15,7 @@ FULL_IMAGE_NAME=${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_
 IMAGE_TAGS=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
 CACHE_TAGS=$(echo $INPUT_CACHE_TAGS | tr ", " "\n")
 #FIRST_IMAGE_TAG=$(echo $INPUT_IMAGE_TAGS | cut -f1 -d",")
+CACHE_FROM_STRING=""
 
 for CACHE_TAG in $CACHE_TAGS
 do
@@ -52,7 +53,7 @@ docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
     $( (($INPUT_TARGET_STAGE)) && printf %s "--target $INPUT_TARGET_STAGE") \
-    $( (($INPUT_CACHE_TAGS)) && printf %s $CACHE_FROM_STRING) \
+    $( (($INPUT_CACHE_TAGS)) && printf %s "$CACHE_FROM_STRING") \
     -t tempcontainer:latest .
 echo "::endgroup::"
 
