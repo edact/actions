@@ -39,7 +39,15 @@ inputs:
     description: ""
     required: false
     default: "true"
+
   cache_build_stage:
+    description: ""
+    required: false
+  
+  cache_tags:
+    description: ""
+    required: false
+  target_stage:
     description: ""
     required: false
 
