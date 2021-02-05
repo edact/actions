@@ -18,6 +18,7 @@ IMAGE_TAGS=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
 if [ "$INPUT_USE_CACHE" = true ] ; then
     INPUT_CACHE_TAGS=${INPUT_CACHE_TAGS:-"$INPUT_IMAGE_TAGS"}
     CACHE_TAGS=$(echo $INPUT_CACHE_TAGS | tr ", " "\n")
+    CACHE_FROM_STRING=""
 
     for CACHE_TAG in $CACHE_TAGS
     do
