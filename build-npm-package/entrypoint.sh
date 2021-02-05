@@ -3,10 +3,6 @@
 # makes the script existing once an error occours
 set -euo pipefail
 
-#npm adduser --registry=https://npm.pkg.github.com --scope=@edact
-#npm whoami
-#exit
-
 # install dependencies
 echo "::group::Install package dependencies"
 npm ci
