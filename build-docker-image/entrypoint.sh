@@ -58,7 +58,7 @@ docker build \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
     $( [ -n "$INPUT_TARGET_STAGE" ] && printf %s "--target $INPUT_TARGET_STAGE" ) \
     $( [ -n "$INPUT_USE_CACHE" ] && [ -n "$INPUT_CACHE_TAGS" ] && printf %s "$CACHE_FROM_STRING" ) \
-    -- file $INPUT_DOCKERFILE \
+    --file $INPUT_DOCKERFILE \
     --tag tempcontainer:latest .
 echo "::endgroup::"
 
