@@ -1,7 +1,7 @@
 #!/bin/sh -l
 
 # makes the script existing once an error occours
-set -euo pipefail
+set -eu
 
 # switch to working directory
 cd ${INPUT_WORKING_DIRECTORY}

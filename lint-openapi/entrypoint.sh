@@ -7,9 +7,7 @@ set -eu
 FOLDER=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
 
 # compute input and output path if not given
-if [ "${INPUT_INPUT_PATH}" = "defaultpath" ]
-    then INPUT_INPUT_PATH="$FOLDER/api/public/openapi.yml"
-fi
+INPUT_INPUT_PATH=${INPUT_INPUT_PATH:-"$FOLDER/api/public/openapi.yml"}
 
 if [ ! -f "$INPUT_INPUT_PATH" ]; then
     echo "::error::$INPUT_INPUT_PATH does not exist!"
