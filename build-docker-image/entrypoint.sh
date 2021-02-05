@@ -13,15 +13,18 @@ FULL_IMAGE_NAME=${INPUT_DOCKER_REGISTRY_URL}/${GITHUB_REPOSITORY}/${INPUT_IMAGE_
 
 # split image tags in array
 IMAGE_TAGS=$(echo $INPUT_IMAGE_TAGS | tr ", " "\n")
-CACHE_TAGS=$(echo $INPUT_CACHE_TAGS | tr ", " "\n")
 #FIRST_IMAGE_TAG=$(echo $INPUT_IMAGE_TAGS | cut -f1 -d",")
-CACHE_FROM_STRING=""
 
-for CACHE_TAG in $CACHE_TAGS
-do
-    docker pull ${FULL_IMAGE_NAME}:${CACHE_TAG} --quiet || true
-    CACHE_FROM_STRING=${CACHE_FROM_STRING}" --cache-from=${FULL_IMAGE_NAME}:${CACHE_TAG}"
-done
+if [ "$INPUT_USE_CACHE" = true ] ; then
+    INPUT_CACHE_TAGS=${INPUT_CACHE_TAGS:-"$INPUT_IMAGE_TAGS"}
+    CACHE_TAGS=$(echo $INPUT_CACHE_TAGS | tr ", " "\n")
+
+    for CACHE_TAG in $CACHE_TAGS
+    do
+        docker pull ${FULL_IMAGE_NAME}:${CACHE_TAG} --quiet || true
+        CACHE_FROM_STRING=${CACHE_FROM_STRING}" --cache-from=${FULL_IMAGE_NAME}:${CACHE_TAG}"
+    done
+fi
 
 # pull image for caching
 # if [ "$INPUT_USE_CACHE" = true ] ; then
@@ -41,7 +44,7 @@ done
 #     # --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
 #     # --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
 #     # --cache-from=${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} \
-#     # -t ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} .
+#     # --tag ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG} .
 
 #     # docker push ${FULL_IMAGE_NAME}:${BUILD_STAGE_IMAGE_TAG}
 #     echo "::endgroup::"
@@ -49,14 +52,13 @@ done
 
 # build image
 echo "::group::Build image"
-echo $CACHE_FROM_STRING
-
 docker build \
     --build-arg=DOCKER_REGISTRY_URL=${INPUT_DOCKER_REGISTRY_URL} \
     --build-arg=BASE_TAG=${INPUT_BUILD_BASE_TAG} \
     $( [ -n "$INPUT_TARGET_STAGE" ] && printf %s "--target $INPUT_TARGET_STAGE" ) \
-    $( [ -n "$INPUT_CACHE_TAGS" ] && printf %s "$CACHE_FROM_STRING" ) \
-    -t tempcontainer:latest .
+    $( [ -n "$INPUT_USE_CACHE" ] && [ -n "$INPUT_CACHE_TAGS" ] && printf %s "$CACHE_FROM_STRING" ) \
+    -- file $INPUT_DOCKERFILE
+    --tag tempcontainer:latest .
 echo "::endgroup::"
 
 # $( (("$INPUT_USE_CACHE" = true)) && printf %s "--cache-from=${FULL_IMAGE_NAME}:${FIRST_IMAGE_TAG}") \
