@@ -22,7 +22,8 @@ if [ "$INPUT_USE_CACHE" = true ] ; then
     CACHE_TAGS=$(echo $INPUT_CACHE_TAGS | tr ", " "\n")
     CACHE_FROM_STRING=""
 
-    for CACHE_TAG in $CACHE_TAGS do
+    for CACHE_TAG in $CACHE_TAGS
+    do
         docker pull ${FULL_IMAGE_NAME}:${CACHE_TAG} --quiet || true
         CACHE_FROM_STRING=${CACHE_FROM_STRING}" --cache-from=${FULL_IMAGE_NAME}:${CACHE_TAG}"
     done
