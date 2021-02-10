@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # makes the script existing once an error occours
-set -eu
+set -euo pipefail
 
 # find out folder name by repo name
 FOLDER=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)

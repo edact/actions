@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # makes the script existing once an error occours
-set -eu
+set -euo pipefail
 
 # set version
 npm --no-git-tag-version version $INPUT_PACKAGE_VERSION --force

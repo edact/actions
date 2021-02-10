@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # makes the script existing once an error occours
-set -eu
+set -euo pipefail
 
 # compute values
 VERSION=$(echo $GITHUB_REF| cut -d'/' -f 3)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # makes the script existing once an error occours
-set -eu
+set -euo pipefail
 
 export HELM_EXPERIMENTAL_OCI=1
 

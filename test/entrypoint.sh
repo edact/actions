@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # makes the script existing once an error occours
-set -eu
+set -euo pipefail
 
 echo $INPUT_ARG
