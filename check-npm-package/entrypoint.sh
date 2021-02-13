@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 
 # makes the script existing once an error occours
 set -e
