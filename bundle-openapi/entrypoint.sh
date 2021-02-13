@@ -28,7 +28,9 @@ fi
 
 # delete output file
 echo "::group::Delete output file"
-rm ${INPUT_OUTPUT_FILETYPE} -v -f
+if ["$INPUT_PATH" != "$OUTPUT_PATH"] then
+    rm ${OUTPUT_PATH} -v -f
+fi
 echo "::endgroup::"
 
 # bundle
