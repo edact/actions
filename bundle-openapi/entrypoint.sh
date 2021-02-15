@@ -28,7 +28,7 @@ fi
 
 # delete output file
 echo "::group::Delete output file"
-if ["$INPUT_PATH" != "$OUTPUT_PATH"] then
+if ["$INPUT_PATH" != "$OUTPUT_PATH"]; then
     rm ${OUTPUT_PATH} -v -f
 fi
 echo "::endgroup::"
