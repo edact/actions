@@ -6,7 +6,7 @@ inputs:
   docker_registry_url:
     description: "URL of the docker registry, no trailing slashes"
     required: false
-    default: "docker.pkg.github.com"
+    default: "registry.edact.de"
 
   docker_registry_user:
     description: "user for registry"
