@@ -9,7 +9,7 @@ inputs:
   location:
     description: "location for generated file, no trailing slashes"
     required: true
-  registry_url:
+  deploy_token:
     description: "deploy token for private packages"
     required: true
 runs:
