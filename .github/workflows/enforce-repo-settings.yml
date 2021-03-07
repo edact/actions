@@ -2,15 +2,15 @@ name: "Enforce Repository Settings"
 on:
   push:
   schedule:
-  - cron: "* * * * *"
-  - cron: "0 5 * * *"
+  - cron: "*/1 * * * *"
+  # - cron: "0 5 * * *"
 
 jobs:
   enforce-repo-settings:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
-    
+
     - uses: ./enforce-repo-settings
       with:
         api-token: ${{ secrets.API_TOKEN }}    
