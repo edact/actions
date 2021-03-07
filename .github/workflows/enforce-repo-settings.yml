@@ -2,7 +2,7 @@ name: "Enforce Repository Settings"
 on:
   push:
   schedule:
-  - cron: "*/1 * * * *"
+  - cron: "*/5 * * * *"
   # - cron: "0 5 * * *"
 
 jobs:
