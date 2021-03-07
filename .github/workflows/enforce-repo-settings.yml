@@ -1,0 +1,13 @@
+name: "Enforce Repository Settings"
+on:
+  schedule:
+  - cron: "* * * * *"
+  # - cron: "0 5 * * *"
+
+jobs:
+  enforce-repo-settings:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: /enforce-repo-settings
+      with:
+        api-token: ${{ secrets.GITHUB_API_TOKEN }}    
