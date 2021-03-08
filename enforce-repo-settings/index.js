@@ -22,8 +22,8 @@ try {
 
     await Promise.all([
       ...repos.map(async (r) => repoService.enforceRepoSettings(r)),
-      ...repos.map(async (r) => repoService.enforceRepoBranchProtection(r)),
-      ...repos.map(async (r) => repoService.enableRepoDependabot(r)),
+      // ...repos.map(async (r) => repoService.enforceRepoBranchProtection(r)),
+      // ...repos.map(async (r) => repoService.enableRepoDependabot(r)),
     ]);
   })();
 } catch (err) {
