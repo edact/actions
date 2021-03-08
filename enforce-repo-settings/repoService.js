@@ -38,6 +38,7 @@ module.exports = class RepoService {
       allow_squash_merge: true,
       allow_merge_commit: false,
       allow_rebase_merge: false,
+      allow_auto_merge: true,
       delete_branch_on_merge: true,
     });
   }
