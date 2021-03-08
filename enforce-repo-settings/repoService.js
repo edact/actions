@@ -1,3 +1,5 @@
+const { Octokit } = require("@octokit/core");
+
 export default class RepoService {
   constructor({ token }) {
     this.octokit = new Octokit({
