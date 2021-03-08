@@ -4,7 +4,7 @@ author: "eDACT"
 inputs:
   helm_registry_url:
     description: "URL of the helm registry, no trailing slashes"
-    default: registry.edact.de
+    default: registry.edact.de/helm
     required: true
   working_directory:
     description: "working directory the action should be performed in"
