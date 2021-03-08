@@ -1,10 +1,6 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+const core = require("@actions/core");
+const github = require("@actions/github");
 const { Octokit } = require("@octokit/core");
-
-const octokit = new Octokit({
-  auth: core.getInput("api-token"),
-});
 
 /*
 Ideen:
@@ -12,11 +8,17 @@ Ideen:
  - Workflow-Dispatch für alle Repos ermöglichen
  - prüfen, ob der default_branch === main ist
  - prüfen, ob es leere Repos gibt
-*/
+ */
 
-const repoService = {
-  getRepos: async () => {
-    const { data: repos } = await octokit.request(
+class RepoService {
+  constructor({ token }) {
+    this.octokit = new Octokit({
+      auth: token,
+    });
+  }
+
+  async getRepos() {
+    const { data: repos } = await this.octokit.request(
       "GET /orgs/{org}/repos?per_page={limit}",
       {
         org: "edact",
@@ -34,10 +36,10 @@ const repoService = {
         // size: r.size < 10,
       }).every((condition) => condition == true);
     });
-  },
+  }
 
-  enforceRepoSettings: async (repo) => {
-    await octokit.request("PATCH /repos/{owner}/{repo}", {
+  async enforceRepoSettings(repo) {
+    await this.octokit.request("PATCH /repos/{owner}/{repo}", {
       owner: repo.owner.login,
       repo: repo.name,
       has_issues: false,
@@ -48,18 +50,21 @@ const repoService = {
       allow_rebase_merge: false,
       delete_branch_on_merge: true,
     });
-  },
+  }
 
-  enableRepoDependabot: async (repo) => {
-    await octokit.request("PUT /repos/{owner}/{repo}/vulnerability-alerts", {
-      owner: repo.owner.login,
-      repo: repo.name,
-      mediaType: {
-        previews: ["dorian"],
-      },
-    });
+  async enableRepoDependabot(repo) {
+    await this.octokit.request(
+      "PUT /repos/{owner}/{repo}/vulnerability-alerts",
+      {
+        owner: repo.owner.login,
+        repo: repo.name,
+        mediaType: {
+          previews: ["dorian"],
+        },
+      }
+    );
 
-    await octokit.request(
+    await this.octokit.request(
       "PUT /repos/{owner}/{repo}/automated-security-fixes",
       {
         owner: repo.owner.login,
@@ -69,10 +74,10 @@ const repoService = {
         },
       }
     );
-  },
+  }
 
-  enforceRepoBranchProtection: async (repo) => {
-    const { data: branch } = await octokit.request(
+  async enforceRepoBranchProtection(repo) {
+    const { data: branch } = await this.octokit.request(
       "GET /repos/{owner}/{repo}/branches/{branch}",
       {
         owner: repo.owner.login,
@@ -81,7 +86,7 @@ const repoService = {
       }
     );
 
-    await octokit.request(
+    await this.octokit.request(
       "PUT /repos/{owner}/{repo}/branches/{branch}/protection",
       {
         mediaType: {
@@ -106,26 +111,25 @@ const repoService = {
         restrictions: null,
       }
     );
-  },
-};
+  }
+}
 
 try {
   (async () => {
-  
+    const repoService = new RepoService({
+      token: core.getInput("api-token"),
+    });
+
     const repos = await repoService.getRepos();
 
     console.log(">>", repos.length, "Repos");
 
     await Promise.all([
       ...repos.map(async (r) => repoService.enforceRepoSettings(r)),
-      ...repos.map(async (r) =>
-        repoService.enforceRepoBranchProtection(r)
-      ),
-      ...repos.map(async (r) =>
-        repoService.enableRepoDependabot(r)
-      ),
+      ...repos.map(async (r) => repoService.enforceRepoBranchProtection(r)),
+      ...repos.map(async (r) => repoService.enableRepoDependabot(r)),
     ]);
-})();
-  } catch (err) {
-    console.error(err);
-  }
+  })();
+} catch (err) {
+  console.error(err);
+}
