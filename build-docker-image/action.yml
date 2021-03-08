@@ -11,7 +11,7 @@ inputs:
   docker_registry_user:
     description: "user for registry"
     required: false
-    default: "publisher"
+    default: "robot$publisher"
   
   docker_registry_token:
     description: "token for registry"
