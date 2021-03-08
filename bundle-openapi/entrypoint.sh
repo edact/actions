@@ -3,15 +3,6 @@
 # makes the script existing once an error occours
 set -euo pipefail
 
-# find out folder name by repo name
-FOLDER=$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)
-
-# compute input and output path if not given
-INPUT_INPUT_DIR=${INPUT_INPUT_DIR:-"$FOLDER/api/public"}
-INPUT_OUTPUT_DIR=${INPUT_OUTPUT_DIR:-"$FOLDER/api/public"}
-INPUT_INPUT_FILENAME=${INPUT_INPUT_FILENAME:-"openapi-raw.yml"}
-INPUT_OUTPUT_FILENAME=${INPUT_OUTPUT_FILENAME:-"openapi.yml"}
-
 INPUT_PATH="$INPUT_INPUT_DIR/$INPUT_INPUT_FILENAME"
 OUTPUT_PATH="$INPUT_OUTPUT_DIR/$INPUT_OUTPUT_FILENAME"
 
@@ -35,11 +26,11 @@ echo "::endgroup::"
 
 # bundle
 echo "::group::Bundle file"
-if [ "$INPUT_DEREFERENCE" = true ] ; then
-    npx -p @apidevtools/swagger-cli swagger-cli bundle -r ${INPUT_PATH} -o ${OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
-else
-    npx -p @apidevtools/swagger-cli swagger-cli bundle ${INPUT_PATH} -o ${OUTPUT_PATH} -t ${INPUT_OUTPUT_FILETYPE} 
-fi
+npx --package @apidevtools/swagger-cli swagger-cli bundle \
+    --outfile ${OUTPUT_PATH} \
+    --type ${INPUT_OUTPUT_FILETYPE} \
+    $( [ "$INPUT_DEREFERENCE" = true ] && printf %s "--dereference" ) \
+    ${INPUT_PATH}
 echo "::endgroup::"
 
 
