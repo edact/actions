@@ -17,8 +17,6 @@ if [ "$INPUT_OUTPUT_FILETYPE" != "yaml" ] && [ "$INPUT_OUTPUT_FILETYPE" != "json
     exit 1
 fi
 
-ls src/public/openapi
-
 # bundle
 echo "::group::Bundle file"
 npx --package @apidevtools/swagger-cli swagger-cli bundle \
