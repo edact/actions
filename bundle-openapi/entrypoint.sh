@@ -17,12 +17,7 @@ if [ "$INPUT_OUTPUT_FILETYPE" != "yaml" ] && [ "$INPUT_OUTPUT_FILETYPE" != "json
     exit 1
 fi
 
-# delete output file
-echo "::group::Delete output file"
-if ["$INPUT_PATH" != "$OUTPUT_PATH"]; then
-    rm ${OUTPUT_PATH} -v -f
-fi
-echo "::endgroup::"
+cat $INPUT_PATH
 
 # bundle
 echo "::group::Bundle file"
